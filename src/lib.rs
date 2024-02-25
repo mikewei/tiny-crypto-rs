@@ -1,2 +1,3 @@
-mod hash;
-mod aes;
+pub mod hash;
+pub mod aes;
+pub mod encoding;

@@ -13,3 +13,4 @@ sha1 = "0.10.6"
 
 [dev-dependencies]
 hex-literal = "0.4.1"
+rstest = "0.18.2"
