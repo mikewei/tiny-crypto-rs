@@ -1,3 +1,3 @@
 pub mod hash;
-pub mod aes;
+pub mod sym;
 pub mod encoding;

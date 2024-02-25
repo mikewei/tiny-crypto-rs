@@ -1,4 +1,4 @@
-pub trait Encoder: Sized {
+pub trait Encoder {
     type Error: std::fmt::Debug;
 
     fn to_text(&self, input: &[u8]) -> String;
