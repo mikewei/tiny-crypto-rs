@@ -1,8 +1,7 @@
-pub trait Hasher: Sized + Clone {
+pub trait Hasher {
     fn new() -> Self;
     fn update(&mut self, input: &[u8]);
     fn finalize(self) -> Vec<u8>;
-
 }
 
 pub trait OnceHasher {
