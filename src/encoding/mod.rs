@@ -6,7 +6,7 @@ pub trait Encoder {
 }
 
 mod base64;
-pub const BASE64: base64::Base64 = base64::Base64{};
+pub const BASE64: base64::Base64 = base64::Base64;
 
 #[cfg(test)]
 mod tests {
