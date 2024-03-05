@@ -1,6 +1,7 @@
 
 use base64ct::Encoding as _;
 
+/// The Base64 encoder
 pub struct Base64;
 
 impl super::Encoder for Base64 {

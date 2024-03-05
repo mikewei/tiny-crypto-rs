@@ -1,5 +1,6 @@
 use ::sha1::Digest as _;
 
+/// The SHA1 hasher
 #[derive(Clone)]
 pub struct Sha1(::sha1::Sha1);
 

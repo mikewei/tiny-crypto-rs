@@ -1,4 +1,4 @@
-
+/// The AES cipher
 pub struct Aes<const BYTES: usize> {
     cipher: libaes::Cipher,
 }

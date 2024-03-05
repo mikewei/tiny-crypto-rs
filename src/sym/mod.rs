@@ -1,3 +1,7 @@
+//! Symmetric Ciphers
+//! 
+
+/// The trait for symmetric cipher.
 pub trait Cipher {
     type KeyBytes;
 
@@ -7,8 +11,12 @@ pub trait Cipher {
 }
 
 mod aes;
+pub use aes::Aes;
+/// The type of AES with 128 key bits.
 pub type Aes128 = aes::Aes<{128 / 8}>;
+/// The type of AES with 192 key bits.
 pub type Aes192 = aes::Aes<{192 / 8}>;
+/// The type of AES with 256 key bits.
 pub type Aes256 = aes::Aes<{256 / 8}>;
 
 #[cfg(test)]
