@@ -1,4 +1,3 @@
-
 use base64ct::Encoding as _;
 
 /// The Base64 encoder

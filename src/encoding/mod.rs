@@ -13,6 +13,10 @@ mod base64;
 /// BASE64 is a constant Base64 instance for convenience.
 pub const BASE64: base64::Base64 = base64::Base64;
 
+mod hex;
+/// HEX is a constant Hex instance for convenience.
+pub const HEX: hex::Hex = hex::Hex;
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -20,6 +24,7 @@ mod tests {
 
     #[rstest]
     #[case(BASE64)]
+    #[case(HEX)]
     fn to_and_from_text(#[case] encoder: impl Encoder) {
         let plain = "some text".as_bytes();
         assert_eq!(plain, &encoder.from_text(&encoder.to_text(plain)).unwrap());
