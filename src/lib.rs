@@ -13,7 +13,11 @@
 //!
 //! Use sha1 hasher:
 //! ```rust
-//! let result = tiny_crypto::sha1!(b"abcdefghijklmn", b"opqrstuvwxyz");
+//! let result: Vec<u8> = tiny_crypto::sha1!(b"abcdefghijklmn", b"opqrstuvwxyz");
+//! assert_eq!(result, tiny_crypto::sha1!(b"abcdefghijklmnopqrstuvwxyz"));
+//! 
+//! let hex_result: String = tiny_crypto::sha1_hex!(b"abcdefgh");
+//! assert_eq!(hex_result, "425af12a0743502b322e93a015bcf868e324d56a");
 //! ```
 //! 
 //! Use Aes128 cipher:
@@ -32,6 +36,13 @@
 //! use tiny_crypto::encoding::{Encoder, BASE64};
 //! let origin: &[u8] = b"some bytes to encoding";
 //! assert_eq!(origin, &BASE64.from_text(&BASE64.to_text(origin)).unwrap());
+//! ```
+//! 
+//! Use Hex encoder:
+//! ```rust
+//! use tiny_crypto::encoding::{Encoder, HEX};
+//! let origin: &[u8] = b"some bytes to encoding";
+//! assert_eq!(origin, &HEX.from_text(&HEX.to_text(origin)).unwrap());
 //! ```
 //! 
 

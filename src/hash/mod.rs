@@ -36,12 +36,26 @@ impl<H: Hasher> OnceHasher for OnceWrapper<H> {
 /// A macro to call hash with variadic arguments.
 #[macro_export]
 macro_rules! hash {
-    ($oh:ident, $($arg:expr),+) => {
+    ($ohasher:ident, $($arg:expr),+) => {
         {
             use $crate::hash::{Hasher, OnceHasher};
-            let mut hasher = $crate::hash::$oh.new_hasher();
+            let mut hasher = $crate::hash::$ohasher.new_hasher();
             $(hasher.update($arg);)+
             hasher.finalize()
+        }
+    };
+}
+
+/// A macro to call hash with variadic arguments and encode to text.
+#[macro_export]
+macro_rules! hash_and_encode {
+    ($ohasher:ident, $encoder:ident, $($arg:expr),+) => {
+        {
+            use $crate::hash::{Hasher, OnceHasher};
+            use $crate::encoding::{Encoder};
+            let mut hasher = $crate::hash::$ohasher.new_hasher();
+            $(hasher.update($arg);)+
+            $crate::encoding::$encoder.to_text(&hasher.finalize())
         }
     };
 }
@@ -57,6 +71,22 @@ pub const SHA1: OnceWrapper<Sha1> = OnceWrapper(PhantomData);
 macro_rules! sha1 {
     ($($arg:expr),+) => {
         $crate::hash!(SHA1, $($arg),+)
+    };
+}
+
+/// A macro to call sha1 hash with variadic arguments and encode to hex string.
+#[macro_export]
+macro_rules! sha1_hex {
+    ($($arg:expr),+) => {
+        $crate::hash_and_encode!(SHA1, HEX, $($arg),+)
+    };
+}
+
+/// A macro to call sha1 hash with variadic arguments and encode to base64 string.
+#[macro_export]
+macro_rules! sha1_base64 {
+    ($($arg:expr),+) => {
+        $crate::hash_and_encode!(SHA1, BASE64, $($arg),+)
     };
 }
 
@@ -93,5 +123,9 @@ mod tests {
         let data2 = "HyVFkGl5F5OQWJZZaNzBBg==";
         let result = crate::sha1!(data1.as_bytes(), data2.as_bytes());
         assert_eq!(result[..], hex!("75e81ceda165f4ffa64f4068af58c64b8f54b88c"));
+        let result = crate::sha1_hex!(data1.as_bytes(), data2.as_bytes());
+        assert_eq!(result, "75e81ceda165f4ffa64f4068af58c64b8f54b88c");
+        let result = crate::sha1_base64!(data1.as_bytes(), data2.as_bytes());
+        assert_eq!(result, "degc7aFl9P+mT0Bor1jGS49UuIw=");
     }
 }
