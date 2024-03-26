@@ -34,14 +34,14 @@
 //! Use Base64 encoder:
 //! ```rust
 //! use tiny_crypto::encoding::{Encoder, BASE64};
-//! let origin: &[u8] = b"some bytes to encoding";
+//! let origin: &[u8] = b"some bytes to encode";
 //! assert_eq!(origin, &BASE64.from_text(&BASE64.to_text(origin)).unwrap());
 //! ```
 //! 
 //! Use Hex encoder:
 //! ```rust
 //! use tiny_crypto::encoding::{Encoder, HEX};
-//! let origin: &[u8] = b"some bytes to encoding";
+//! let origin: &[u8] = b"some bytes to encode";
 //! assert_eq!(origin, &HEX.from_text(&HEX.to_text(origin)).unwrap());
 //! ```
 //! 

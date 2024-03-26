@@ -379,7 +379,7 @@ dependencies = [
 
 [[package]]
 name = "tiny-crypto"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "base64ct",
  "bincode",
