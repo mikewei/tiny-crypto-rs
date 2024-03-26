@@ -10,6 +10,7 @@ with APIs aimed to be simple to use.
   - Aes128, Aes192, Aes256
 * Text Encoders (encoding)
   - Base64
+  - Hex
 
 ## Example
 
